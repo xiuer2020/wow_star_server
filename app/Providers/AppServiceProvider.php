@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             // $query->sql
             // $query->bindings
             // $query->time
-            echo 'query.sql: '.$query->sql.' \n ';
+//            echo 'query.sql: '.$query->sql.' \n ';
         });
     }
 }

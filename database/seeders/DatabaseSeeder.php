@@ -1,21 +1,25 @@
 <?php
 
-namespace Database\Seeders;
+//namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * 运行数据库填充器
      *
      * @return void
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(UserSeeder::class);
-        echo $this;
-        exit();
+//        App\models\User::factory()
+//            ->times(50)
+//            ->hasPosts(1)
+//            ->create();
+
     }
 }
