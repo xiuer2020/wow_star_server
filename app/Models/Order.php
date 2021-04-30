@@ -10,6 +10,15 @@ class Order extends Model
 {
     protected $guarded = ['id'];
     public $timestamps = true;
+    protected $fillable = [
+        'number',
+        'user_id',
+        'addr',
+        'addr',
+        'quantity',
+        'good_id',
+        'mailing_type'
+    ];
 
     public function user()
     {

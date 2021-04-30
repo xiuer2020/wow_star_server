@@ -18,9 +18,8 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'open_id',
+        'head_portrait',
         'remember_token',
         'session_key',
         'uionid',
@@ -29,6 +28,8 @@ class User extends Model
         'create_at',
         'update_at'
     ];
+    protected $guarded = ['id'];
+
 
     /**
      * The attributes that should be hidden for arrays.

@@ -1,7 +1,8 @@
 <?php
 
-//namespace Database\Seeders;
+namespace Database\Seeders;
 
+use App\Models\Good;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -16,10 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        App\models\User::factory()
-//            ->times(50)
-//            ->hasPosts(1)
-//            ->create();
-
+        Good::factory()
+            ->times(50)
+            ->create();
     }
+
 }

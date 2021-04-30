@@ -16,4 +16,4 @@ use App\Models\Flight;
 |
 */
 
-Route::get('global-data',[\App\Http\Controllers\UserController::class,'index']);
+
