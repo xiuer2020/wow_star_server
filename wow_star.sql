@@ -39,24 +39,6 @@ insert  into `addrs`(`id`,`user_id`,`name`,`phone`,`addr`,`created_at`,`updated_
 (3,'openId','addresseeName',NULL,'addresseeAddr','2021-04-30 09:13:37','2021-04-30 09:13:37'),
 (4,'openId',NULL,NULL,NULL,'2021-04-30 09:24:04','2021-04-30 09:24:04');
 
-/*Table structure for table `failed_jobs` */
-
-DROP TABLE IF EXISTS `failed_jobs`;
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `failed_jobs` */
-
 /*Table structure for table `feedbacks` */
 
 DROP TABLE IF EXISTS `feedbacks`;
@@ -78,26 +60,6 @@ insert  into `feedbacks`(`id`,`number`,`user_id`,`description`,`created_at`,`upd
 (8,'f1619772014',1,'decription','2021-04-30 08:40:14','2021-04-30 08:40:14'),
 (9,'f1619772038',1,'decription','2021-04-30 08:40:38','2021-04-30 08:40:38');
 
-/*Table structure for table `flights` */
-
-DROP TABLE IF EXISTS `flights`;
-
-CREATE TABLE `flights` (
-  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `col1` int(20) DEFAULT NULL COMMENT 'col1',
-  `name` varchar(20) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
-/*Data for the table `flights` */
-
-insert  into `flights`(`id`,`col1`,`name`,`created_at`,`updated_at`) values 
-(1,123,'test',NULL,NULL),
-(2,123,'test',NULL,NULL),
-(3,12311111,'test111','2021-04-29 02:28:32','2021-04-29 02:37:22');
-
 /*Table structure for table `goods` */
 
 DROP TABLE IF EXISTS `goods`;
@@ -107,7 +69,7 @@ CREATE TABLE `goods` (
   `number` varchar(20) DEFAULT NULL COMMENT '商品编号',
   `name` varchar(20) DEFAULT NULL COMMENT '商品名称',
   `owner` varchar(20) DEFAULT NULL COMMENT '商品所有者',
-  `description` varchar(100) DEFAULT NULL COMMENT '商品描述',
+  `description` text COMMENT '商品描述',
   `deadline` datetime DEFAULT NULL COMMENT '商品上架截止时间',
   `cover_image` varchar(100) DEFAULT NULL COMMENT '商品封面图片地址',
   `publicity_video` varchar(100) DEFAULT NULL COMMENT '商品宣传视频地址',
@@ -116,31 +78,12 @@ CREATE TABLE `goods` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `goods` */
 
 insert  into `goods`(`id`,`number`,`name`,`owner`,`description`,`deadline`,`cover_image`,`publicity_video`,`issuer`,`sale_quantity`,`created_at`,`updated_at`) values 
 (1,'2','name','owner','description',NULL,'cover_image','publicity_video','issuer',20,'2021-04-30 16:29:46','2021-04-30 08:39:27');
-
-/*Table structure for table `migrations` */
-
-DROP TABLE IF EXISTS `migrations`;
-
-CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `migrations` */
-
-insert  into `migrations`(`id`,`migration`,`batch`) values 
-(1,'2014_10_12_000000_create_users_table',1),
-(2,'2014_10_12_100000_create_password_resets_table',1),
-(3,'2019_08_19_000000_create_failed_jobs_table',1),
-(4,'2021_04_28_004618_create_flights_table',1);
 
 /*Table structure for table `orders` */
 
@@ -165,19 +108,6 @@ insert  into `orders`(`id`,`number`,`user_id`,`addr`,`quantity`,`good_id`,`maili
 (12,'ws1619771960',2,'广州',2,1,'mailingType','2021-04-30 08:39:20','2021-04-30 08:39:20'),
 (13,'ws1619771967',2,'广州',2,1,'mailingType','2021-04-30 08:39:27','2021-04-30 08:39:27');
 
-/*Table structure for table `password_resets` */
-
-DROP TABLE IF EXISTS `password_resets`;
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-/*Data for the table `password_resets` */
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
@@ -200,7 +130,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`open_id`,`session_key`,`uionid`,`head_portrait`,`remember_token`,`addr`,`phone`,`created_at`,`updated_at`) values 
-(66,'openId','session_key','unionid','headPortrait','rememberToken',NULL,NULL,'2021-04-30 08:27:20','2021-04-30 08:27:20');
+(66,'openId','session_key','unionid','headPortrait','rememberToken',NULL,NULL,'2021-04-30 08:27:20','2021-05-06 00:55:44');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
