@@ -16,7 +16,7 @@ class VerifyRememberToken
      */
     public function handle(Request $request, Closure $next)
     {
-
+        $request->openId = $request->input('token');
         return $next($request);
     }
 }

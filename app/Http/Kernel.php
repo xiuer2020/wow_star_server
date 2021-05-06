@@ -21,8 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \App\Http\Middleware\TrimStrings::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        VerifyRememberToken::class
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class
     ];
 
     /**
@@ -64,5 +63,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'myToken' => VerifyRememberToken::class
     ];
 }

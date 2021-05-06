@@ -180,6 +180,6 @@ Route::get('updateAddr', function (Request $request) {
 
 
 Route::get('test', function () {
-
+    return \Illuminate\Support\Facades\Crypt::encryptString('123');
 });
 
