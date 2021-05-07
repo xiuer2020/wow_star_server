@@ -39,6 +39,7 @@ Route::get('login', function (Request $request) {
     $headPortrait = 'headPortrait';
 
     $rememberToken = 'rememberToken';
+
     if ($user) {
 //    用户名拦截 测试阶段不执行
 //    if (false) {
@@ -62,6 +63,7 @@ Route::get('login', function (Request $request) {
         return success_json($rememberToken, '登录成功');
     }
 });
+
 
 Route::get('getGoodList', function (Request $request) {
     $goodList = App\Models\Good::all();
@@ -133,17 +135,30 @@ Route::get('getMyOrdes', function (Request $request) {
 Route::get('setAddr', function (Request $request) {
 //Route::post('setAddr', function (Request $request) {
     $userId = 'openId';
-    $name = 'name';
-    $addr = 'addr';
-    $phone = 'phone';
-    $addrUpdated = \App\Models\Addr::create([
-        'user_id' => $userId,
-        'name' => $name,
-        'addr' => $addr,
-        'phone'=>$phone
-    ]);
-    if ($addrUpdated) {
-        return success_json('添加地址成功');
+    $name = $request->input('name');
+    $addr = $request->input('addr');
+    $phone = $request->input('phone');
+    $currentAddr = $request->input('currentAddr');
+
+    if($currentAddr == 1 && $name && $addr && $phone){
+        \App\Models\Addr::where('open_id', 'openId')->update([
+            'current_addr'=> 0
+        ]);
+    }
+
+    if ($name && $addr && $phone) {
+        $addrUpdated = \App\Models\Addr::create([
+            'open_id' => $userId,
+            'name' => $name,
+            'addr' => $addr,
+            'phone' => $phone,
+            'current_addr'=> $currentAddr
+        ]);
+        if ($addrUpdated) {
+            return success_json('添加地址成功');
+        } else {
+            return error_json('添加地址失败');
+        }
     } else {
         return error_json('添加地址失败');
     }
@@ -151,9 +166,9 @@ Route::get('setAddr', function (Request $request) {
 
 Route::get('getAddr', function (Request $request) {
     $addrs = \App\Models\Addr::where('user_id', 'openId')->get();
-    if($addrs){
+    if ($addrs) {
         return success_json($addrs);
-    }else{
+    } else {
         return error_json('获取地址失败');
     }
 });
@@ -169,11 +184,11 @@ Route::get('updateAddr', function (Request $request) {
         'user_id' => $userId,
         'name' => $name,
         'addr' => $addr,
-        'phone'=>$phone
+        'phone' => $phone
     ]);
-    if($addr){
+    if ($addr) {
         return success_json('更新地址成功');
-    }else{
+    } else {
         return error_json('获取地址失败');
     }
 });

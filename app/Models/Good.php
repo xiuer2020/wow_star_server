@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Good extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, DefaultDatetimeFormat;
 
 
 
