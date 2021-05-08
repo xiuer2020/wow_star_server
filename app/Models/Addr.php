@@ -14,7 +14,8 @@ class Addr extends Model
     protected $fillable = [
         'open_id',
         'name',
-        'addr',
+        'region',
+        'detail_addr',
         'phone',
         'current_addr'
     ];

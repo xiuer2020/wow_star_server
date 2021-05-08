@@ -11,17 +11,3 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
-
-class UserController extends Controller
-{
-    /**
-     * Show the profile for the given user.
-     *
-     * @param User $user
-     * @return View
-     */
-    public function show(User $user)
-    {
-        return view('user.profile', ['user' => $user]);
-    }
-}
