@@ -14,7 +14,7 @@ class Order extends Model
     public $timestamps = true;
     protected $fillable = [
         'number',
-        'open_id',
+        'openid',
         'addr',
         'quantity',
         'good_id',
@@ -23,7 +23,7 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'open_id');
+        return $this->belongsTo(User::class, 'openid');
     }
 //    public function user(){
 //        return $this->hasOne('App\Models\User');

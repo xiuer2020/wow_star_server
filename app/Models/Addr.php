@@ -12,7 +12,7 @@ class Addr extends Model
 
 
     protected $fillable = [
-        'open_id',
+        'openid',
         'name',
         'region',
         'detail_addr',

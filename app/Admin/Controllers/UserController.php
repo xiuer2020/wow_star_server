@@ -29,7 +29,7 @@ class UserController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
         $grid->column('addr', __('Addr'));
-        $grid->column('open_id', __('Open id'));
+        $grid->column('openid', __('Open id'));
         $grid->column('remember_token', __('Remember token'));
         $grid->column('head_portrait', __('Head portrait'));
         $grid->column('phone', __('Phone'));
@@ -52,7 +52,7 @@ class UserController extends AdminController
         $show->field('id', __('Id'));
         $show->field('name', __('Name'));
         $show->field('addr', __('Addr'));
-        $show->field('open_id', __('Open id'));
+        $show->field('openid', __('Open id'));
         $show->field('remember_token', __('Remember token'));
         $show->field('head_portrait', __('Head portrait'));
         $show->field('phone', __('Phone'));
@@ -73,7 +73,7 @@ class UserController extends AdminController
 
         $form->text('name', __('Name'));
         $form->text('addr', __('Addr'));
-        $form->text('open_id', __('Open id'));
+        $form->text('openid', __('Open id'));
         $form->text('remember_token', __('Remember token'));
         $form->text('head_portrait', __('Head portrait'));
         $form->mobile('phone', __('Phone'));

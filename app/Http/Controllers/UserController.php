@@ -28,7 +28,7 @@ class UserController extends Controller
         $openId = 'openId';
         $session_key = 'session_key';
         $unionid = 'unionid';
-        $user = User::where('open_id', $openId)->first();
+        $user = User::where('openid', $openId)->first();
         $headPortrait = 'headPortrait';
 
         $res = Crypt::encryptString($openId);
@@ -40,7 +40,7 @@ class UserController extends Controller
             return success_json($res, '登录成功');
         } else {
             User::create([
-                'open_id' => $openId,
+                'openid' => $openId,
                 'session_key' => $session_key,
                 'uionid' => $unionid,
                 'head_portrait' => $headPortrait,
@@ -75,7 +75,7 @@ class UserController extends Controller
         }
 
         $orderUpdated = Order::create([
-            'open_id' => $openId,
+            'openid' => $openId,
             'number' => $number,
             'addr' => $addr,
             'quantity' => $goodQuantity,
@@ -91,6 +91,10 @@ class UserController extends Controller
 
     }
 
+    /**提交反馈
+     * POST
+     * @param string $openId 用户
+     */
     public function setFeedback(Request $request)
     {
         $openId = $request->openId;
@@ -98,7 +102,7 @@ class UserController extends Controller
         $description = $request->input('description');
         $feedbackUpdated = Feedback::create([
             'number' => $number,
-            'open_id' => $openId,
+            'openid' => $openId,
             'description' => $description
         ]);
         if ($feedbackUpdated) {
@@ -111,7 +115,7 @@ class UserController extends Controller
     public function getMyOrdes(Request $request)
     {
         $openId = $request->openId;
-        $myOrdes = \App\Models\Order::where('open_id', $openId)->get();
+        $myOrdes = \App\Models\Order::where('openid', $openId)->get();
         return success_json($myOrdes);
     }
 
@@ -127,7 +131,7 @@ class UserController extends Controller
 
 
         if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Addr::where([['open_id', $openId], ['current_addr', $currentAddr]])->update([
+            Addr::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
                 'current_addr' => 0
             ]);
         }
@@ -135,7 +139,7 @@ class UserController extends Controller
 
         if ($name && $region && $detailAddr && $phone && $currentAddr != null) {
             $addrUpdated = Addr::create([
-                'open_id' => $openId,
+                'openid' => $openId,
                 'name' => $name,
                 'region' => $region,
                 'detail_addr' => $detailAddr,
@@ -155,7 +159,7 @@ class UserController extends Controller
     public function getAddr(Request $request)
     {
         $openId = $request->openId;
-        $addrs = Addr::where('open_id', 'openId')->get();
+        $addrs = Addr::where('openid', 'openId')->get();
         if ($addrs) {
             return success_json($addrs);
         } else {
@@ -174,12 +178,12 @@ class UserController extends Controller
         $addrId = $request->input('addrId');
 
         if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Addr::where([['open_id', $openId], ['current_addr', $currentAddr]])->update([
+            Addr::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
                 'current_addr' => 0
             ]);
         }
 
-        $addr = Addr::where([['open_id', 'openId'], ['id', $addrId]])->first()->update([
+        $addr = Addr::where([['openid', 'openId'], ['id', $addrId]])->first()->update([
             'user_id' => $openId,
             'name' => $name,
             'region' => $region,
@@ -194,14 +198,18 @@ class UserController extends Controller
         }
     }
 
-    public function test(Request $request)
-    {
-        return $request->openId;
-    }
-
     public function getRankingList(Request $request)
     {
         $res = Order::select('good_id')->with('good')->get();
+
         return $res;
     }
+
+    public function test(Request $request)
+    {
+        $res = Order::where('openid', 'openId')->join('users');
+
+        return success_json($res);
+    }
+
 }

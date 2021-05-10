@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `addrs`;
 
 CREATE TABLE `addrs` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '收获地址id',
-  `open_id` varchar(20) NOT NULL COMMENT '用户微信open_id',
+  `openid` varchar(20) NOT NULL COMMENT '用户微信openid',
   `name` varchar(20) NOT NULL COMMENT '收件人姓名',
   `phone` varchar(20) NOT NULL COMMENT '收件人电话',
   `addr` varbinary(30) NOT NULL COMMENT '收件人地址',
@@ -34,7 +34,7 @@ CREATE TABLE `addrs` (
 
 /*Data for the table `addrs` */
 
-insert  into `addrs`(`id`,`open_id`,`name`,`phone`,`addr`,`current_addr`,`created_at`,`updated_at`) values 
+insert  into `addrs`(`id`,`openid`,`name`,`phone`,`addr`,`current_addr`,`created_at`,`updated_at`) values
 (1,'openId','name','name','888',0,'2021-05-07 17:16:28','2021-05-07 17:49:23'),
 (2,'openId','name','name','sitedetailSite',0,'2021-05-07 17:34:55','2021-05-07 17:49:23'),
 (3,'openId','name','name','sitj',0,'2021-05-07 17:43:16','2021-05-07 17:49:23'),
@@ -60,7 +60,7 @@ CREATE TABLE `admin_menu` (
 
 /*Data for the table `admin_menu` */
 
-insert  into `admin_menu`(`id`,`parent_id`,`order`,`title`,`icon`,`uri`,`permission`,`created_at`,`updated_at`) values 
+insert  into `admin_menu`(`id`,`parent_id`,`order`,`title`,`icon`,`uri`,`permission`,`created_at`,`updated_at`) values
 (1,0,1,'Dashboard','fa-bar-chart','/',NULL,NULL,NULL),
 (2,0,2,'Admin','fa-tasks','',NULL,NULL,NULL),
 (3,2,3,'Users','fa-users','auth/users',NULL,NULL,NULL),
@@ -88,7 +88,7 @@ CREATE TABLE `admin_operation_log` (
 
 /*Data for the table `admin_operation_log` */
 
-insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`created_at`,`updated_at`) values 
+insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`created_at`,`updated_at`) values
 (1,1,'admin','GET','127.0.0.1','[]','2021-05-07 03:52:13','2021-05-07 03:52:13'),
 (2,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 03:52:22','2021-05-07 03:52:22'),
 (3,1,'admin/users/create','GET','127.0.0.1','{\"_pjax\":\"#pjax-container\"}','2021-05-07 03:52:26','2021-05-07 03:52:26'),
@@ -125,11 +125,11 @@ insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`
 (34,1,'admin','GET','127.0.0.1','[]','2021-05-07 05:55:11','2021-05-07 05:55:11'),
 (35,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 05:55:25','2021-05-07 05:55:25'),
 (36,1,'admin/users/create','GET','127.0.0.1','{\"_pjax\":\"#pjax-container\"}','2021-05-07 05:55:30','2021-05-07 05:55:30'),
-(37,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"open_id\":null,\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 05:57:14','2021-05-07 05:57:14'),
+(37,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"openid\":null,\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 05:57:14','2021-05-07 05:57:14'),
 (38,1,'admin/users/create','GET','127.0.0.1','[]','2021-05-07 05:57:14','2021-05-07 05:57:14'),
-(39,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"open_id\":\"openId\",\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:57:29','2021-05-07 05:57:29'),
+(39,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"openid\":\"openId\",\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:57:29','2021-05-07 05:57:29'),
 (40,1,'admin/users/create','GET','127.0.0.1','[]','2021-05-07 05:57:29','2021-05-07 05:57:29'),
-(41,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"open_id\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:58:32','2021-05-07 05:58:32'),
+(41,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"openid\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:58:32','2021-05-07 05:58:32'),
 (42,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 05:58:32','2021-05-07 05:58:32'),
 (43,1,'admin/goods/create','GET','127.0.0.1','[]','2021-05-07 05:58:45','2021-05-07 05:58:45'),
 (44,1,'admin/goods','GET','127.0.0.1','{\"id\":\"2\",\"_pjax\":\"#pjax-container\"}','2021-05-07 05:59:34','2021-05-07 05:59:34'),
@@ -154,7 +154,7 @@ insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`
 (63,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:34','2021-05-07 06:30:34'),
 (64,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:34','2021-05-07 06:30:34'),
 (65,1,'admin/users/create','GET','127.0.0.1','{\"_pjax\":\"#pjax-container\"}','2021-05-07 06:30:46','2021-05-07 06:30:46'),
-(66,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"open_id\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 06:30:58','2021-05-07 06:30:58'),
+(66,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"openid\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 06:30:58','2021-05-07 06:30:58'),
 (67,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:58','2021-05-07 06:30:58'),
 (68,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 14:31:27','2021-05-07 14:31:27'),
 (69,1,'admin/goods','GET','127.0.0.1','[]','2021-05-07 14:32:58','2021-05-07 14:32:58'),
@@ -251,7 +251,7 @@ CREATE TABLE `admin_permissions` (
 
 /*Data for the table `admin_permissions` */
 
-insert  into `admin_permissions`(`id`,`name`,`slug`,`http_method`,`http_path`,`created_at`,`updated_at`) values 
+insert  into `admin_permissions`(`id`,`name`,`slug`,`http_method`,`http_path`,`created_at`,`updated_at`) values
 (1,'All permission','*','','*',NULL,NULL),
 (2,'Dashboard','dashboard','GET','/',NULL,NULL),
 (3,'Login','auth.login','','/auth/login\r\n/auth/logout',NULL,NULL),
@@ -272,7 +272,7 @@ CREATE TABLE `admin_role_menu` (
 
 /*Data for the table `admin_role_menu` */
 
-insert  into `admin_role_menu`(`role_id`,`menu_id`,`created_at`,`updated_at`) values 
+insert  into `admin_role_menu`(`role_id`,`menu_id`,`created_at`,`updated_at`) values
 (1,2,NULL,NULL);
 
 /*Table structure for table `admin_role_permissions` */
@@ -289,7 +289,7 @@ CREATE TABLE `admin_role_permissions` (
 
 /*Data for the table `admin_role_permissions` */
 
-insert  into `admin_role_permissions`(`role_id`,`permission_id`,`created_at`,`updated_at`) values 
+insert  into `admin_role_permissions`(`role_id`,`permission_id`,`created_at`,`updated_at`) values
 (1,1,NULL,NULL);
 
 /*Table structure for table `admin_role_users` */
@@ -306,7 +306,7 @@ CREATE TABLE `admin_role_users` (
 
 /*Data for the table `admin_role_users` */
 
-insert  into `admin_role_users`(`role_id`,`user_id`,`created_at`,`updated_at`) values 
+insert  into `admin_role_users`(`role_id`,`user_id`,`created_at`,`updated_at`) values
 (1,1,NULL,NULL);
 
 /*Table structure for table `admin_roles` */
@@ -326,7 +326,7 @@ CREATE TABLE `admin_roles` (
 
 /*Data for the table `admin_roles` */
 
-insert  into `admin_roles`(`id`,`name`,`slug`,`created_at`,`updated_at`) values 
+insert  into `admin_roles`(`id`,`name`,`slug`,`created_at`,`updated_at`) values
 (1,'Administrator','administrator','2021-05-07 03:49:14','2021-05-07 03:49:14');
 
 /*Table structure for table `admin_user_permissions` */
@@ -362,7 +362,7 @@ CREATE TABLE `admin_users` (
 
 /*Data for the table `admin_users` */
 
-insert  into `admin_users`(`id`,`username`,`password`,`name`,`avatar`,`remember_token`,`created_at`,`updated_at`) values 
+insert  into `admin_users`(`id`,`username`,`password`,`name`,`avatar`,`remember_token`,`created_at`,`updated_at`) values
 (1,'admin','$2y$10$Z5lI/8ZZzEDkkfCVAaNMteXD53yZRAXkmXc5RG5mzcACZS9YBuHtW','Administrator',NULL,'XNN2IKiLn8BngXamcy84JDtBDykttWUtqUHjbh4NyrecUnHtniiVta5EA396','2021-05-07 03:49:14','2021-05-07 03:49:14');
 
 /*Table structure for table `failed_jobs` */
@@ -433,7 +433,7 @@ CREATE TABLE `goods` (
 
 /*Data for the table `goods` */
 
-insert  into `goods`(`id`,`name`,`owner`,`description`,`deadline`,`cover_image`,`publicity_video`,`issuer`,`sale_quantity`,`created_at`,`updated_at`) values 
+insert  into `goods`(`id`,`name`,`owner`,`description`,`deadline`,`cover_image`,`publicity_video`,`issuer`,`sale_quantity`,`created_at`,`updated_at`) values
 (1,'name','owner','商品描述','2021-05-08 15:38:04','/assets/images/item-tab.png','/assets/images/item-tab.png','issuer',3,'2021-05-07 15:38:18','2021-05-07 15:38:18'),
 (2,'name','owner','商品描述','2021-05-08 15:45:59','/assets/images/item-tab.png','/assets/images/item-tab.png','issuer',4,'2021-05-07 15:46:30','2021-05-07 15:46:30'),
 (3,'name','owner','商品描述','2021-05-08 15:46:40','/assets/images/item-tab.png','/assets/images/item-tab.png','issuer',10,'2021-05-07 15:46:52','2021-05-07 15:46:52'),
@@ -453,7 +453,7 @@ CREATE TABLE `migrations` (
 
 /*Data for the table `migrations` */
 
-insert  into `migrations`(`id`,`migration`,`batch`) values 
+insert  into `migrations`(`id`,`migration`,`batch`) values
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
 (3,'2016_01_04_173148_create_admin_tables',1),
@@ -501,7 +501,7 @@ CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `open_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `openid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `head_portrait` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -512,7 +512,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`addr`,`open_id`,`remember_token`,`head_portrait`,`phone`,`created_at`,`updated_at`) values 
+insert  into `users`(`id`,`name`,`addr`,`openid`,`remember_token`,`head_portrait`,`phone`,`created_at`,`updated_at`) values
 (1,'name','addr','openId','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 05:58:32','2021-05-07 17:49:57'),
 (2,'name','addr','openId','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 06:30:58','2021-05-07 17:49:57');
 

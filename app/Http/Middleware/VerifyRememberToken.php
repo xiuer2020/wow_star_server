@@ -20,7 +20,7 @@ class VerifyRememberToken
     {
         try {
             $openId = Crypt::decryptString($request->input('token'));
-            $user = User::where('open_id', $openId);
+            $user = User::where('openid', $openId);
             if ($user) {
                 $request->openId = $openId;
                 return $next($request);
