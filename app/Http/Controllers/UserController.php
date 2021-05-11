@@ -7,7 +7,7 @@ use App\Models\Feedback;
 use App\Models\Good;
 use App\Models\Order;
 use App\Models\User;
-use App\Models\Addr;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -131,14 +131,14 @@ class UserController extends Controller
 
 
         if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Addr::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
+            Address::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
                 'current_addr' => 0
             ]);
         }
 
 
         if ($name && $region && $detailAddr && $phone && $currentAddr != null) {
-            $addrUpdated = Addr::create([
+            $addrUpdated = Address::create([
                 'openid' => $openId,
                 'name' => $name,
                 'region' => $region,
@@ -159,7 +159,7 @@ class UserController extends Controller
     public function getAddr(Request $request)
     {
         $openId = $request->openId;
-        $addrs = Addr::where('openid', 'openId')->get();
+        $addrs = Address::where('openid', 'openId')->get();
         if ($addrs) {
             return success_json($addrs);
         } else {
@@ -178,12 +178,12 @@ class UserController extends Controller
         $addrId = $request->input('addrId');
 
         if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Addr::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
+            Address::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
                 'current_addr' => 0
             ]);
         }
 
-        $addr = Addr::where([['openid', 'openId'], ['id', $addrId]])->first()->update([
+        $addr = Address::where([['openid', 'openId'], ['id', $addrId]])->first()->update([
             'user_id' => $openId,
             'name' => $name,
             'region' => $region,

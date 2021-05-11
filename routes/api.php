@@ -16,14 +16,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-//Route::get('login', [UserController::class, 'login']);
-
-Route::post('login', [AuthController::class, 'login']);
-Route::get('getOpenid', [AuthController::class, 'getOpenid']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('getOpenid', [AuthController::class, 'getOpenid']);
+Route::get('getGoodList', [UserController::class, 'getGoodList'])->name('getGoodList');
 Route::get('test', [UserController::class, 'test']);
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
-    Route::get('getGoodList', [UserController::class, 'getGoodList']);
+
     Route::get('comfirmOrde', [UserController::class, 'comfirmOrde'])->middleware('myToken');
     Route::get('setFeedback', [UserController::class, 'setFeedback'])->middleware('myToken');
     Route::get('getMyOrdes', [UserController::class, 'getMyOrdes'])->middleware('myToken');
@@ -35,3 +34,4 @@ Route::group(['middleware'=>'auth:sanctum'], function(){
 
     Route::get('index', [UserController::class, 'index']);
 });
+

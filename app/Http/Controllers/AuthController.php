@@ -69,7 +69,6 @@ class AuthController extends Controller
 
                 $app = Factory::miniProgram($config);
                 $decryptData = $app->encryptor->decryptData($session_key, $iv, $encryptedData);
-                return success_json($decryptData);
             } catch (\Exception $exception) {
                 return error_json($exception->getMessage(), 414);
             }
