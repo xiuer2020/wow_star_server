@@ -19,10 +19,10 @@ class VerifyRememberToken
     public function handle(Request $request, Closure $next)
     {
         try {
-            $openId = Crypt::decryptString($request->input('token'));
-            $user = User::where('openid', $openId);
+            $openid = Crypt::decryptString($request->input('token'));
+            $user = User::where('openid', $openid);
             if ($user) {
-                $request->openId = $openId;
+                $request->openid = $openid;
                 return $next($request);
             } else {
                 return error_json('用户不存在');

@@ -12,14 +12,14 @@ class Order extends Model
     use DefaultDatetimeFormat;
     protected $guarded = ['id'];
     public $timestamps = true;
-    protected $fillable = [
-        'number',
-        'openid',
-        'addr',
-        'quantity',
-        'good_id',
-        'mailing_type'
-    ];
+//    protected $fillable = [
+//        'number',
+//        'openid',
+//        'address',
+//        'quantity',
+//        'good_id',
+//        'mailing_type'
+//    ];
 
     public function user()
     {

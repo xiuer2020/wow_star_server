@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Auth\Authenticatable;
-
 class User extends Model
 {
-    use HasFactory, HasApiTokens, Authenticatable;
+    use HasApiTokens;
 
 
 

@@ -28,7 +28,7 @@ return [
     'batch_delete'          => 'Eliminar por lotes',
     'save'                  => 'Guardar',
     'refresh'               => 'Refrescar',
-    'order'                 => 'Ordenar',
+    'order'                 => 'Ordernar',
     'expand'                => 'Expandir',
     'collapse'              => 'Colapsar',
     'filter'                => 'Filtrar',

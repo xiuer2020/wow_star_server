@@ -26,14 +26,16 @@ class AuthController extends Controller
         $code = $request->input('code');
         $config = config('wechat.miniprogram');
         $app = Factory::miniProgram($config);
-
         $session = $app->auth->session($code);
-        if (isset($session['errcode']) && $session['errcode'] != 0) return error_json($session['errmsg']);
+        if (isset($session['errcode']) && $session['errcode'] != 0) {
+            return error_json($session['errmsg']);
+        }
         $openid = $session['openid'];
         $session_key = $session['session_key'];
 
         WxSession::where('openid', $openid)->delete();
         WxSession::create(compact('openid', 'session_key'));
+        return success_json(compact('openid'));
 
         return success_json(compact('openid', 'session_key'));
     }
@@ -58,7 +60,9 @@ class AuthController extends Controller
         $openid = $request->input('openid');
         $session_key = '';
         $session = WxSession::where('openid', $openid)->orderByDesc('id')->first();
-        if (!$session) return error_json('no session', 414);
+        if (!$session) {
+            return error_json('no session', 414);
+        }
         if ($session) {
             $session_key = $session->session_key;
             $iv = $request->input('iv');
@@ -81,7 +85,7 @@ class AuthController extends Controller
             $user = User::create(compact('openid', 'session_key'));
         }
         $user->tokens()->delete();
-        $token = $user->createToken('token_name')->plainTextToken;
+        $token = $user->createToken('web')->plainTextToken;
 
         return success_json(['token' => $token, 'user' => $user]);
     }

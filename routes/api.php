@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +18,22 @@ use App\Http\Controllers\AuthController;
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('getOpenid', [AuthController::class, 'getOpenid']);
-Route::get('getGoodList', [UserController::class, 'getGoodList'])->name('getGoodList');
+Route::get('getGoodList', [UserController::class, 'getGoodList']);
+//Route::post('getAddress', [UserController::class, 'getAddress']);
 Route::get('test', [UserController::class, 'test']);
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
+    Route::post('getAddress', [UserController::class, 'getAddress'])->name('getAddress');
 
-    Route::get('comfirmOrde', [UserController::class, 'comfirmOrde'])->middleware('myToken');
-    Route::get('setFeedback', [UserController::class, 'setFeedback'])->middleware('myToken');
-    Route::get('getMyOrdes', [UserController::class, 'getMyOrdes'])->middleware('myToken');
-    Route::get('setAddr', [UserController::class, 'setAddr'])->middleware('myToken');
-    Route::get('getAddr', [UserController::class, 'getAddr'])->middleware('myToken');
-    Route::get('updateAddr', [UserController::class, 'updateAddr'])->middleware('myToken');
-    Route::get('getRankingList', [UserController::class, 'getRankingList']);
+    Route::post('comfirmOrder', [OrderController::class, 'comfirmOrder']);
+
+
+    Route::post('setFeedback', [UserController::class, 'setFeedback']);
+    Route::post('getMyOrders', [UserController::class, 'getMyOrders']);
+    Route::post('setAddress', [UserController::class, 'setAddress']);
+
+    Route::post('updateAddress', [UserController::class, 'updateAddress']);
+    Route::post('getRankingList', [UserController::class, 'getRankingList']);
 
 
     Route::get('index', [UserController::class, 'index']);

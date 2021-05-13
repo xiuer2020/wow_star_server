@@ -28,7 +28,7 @@ return [
     'batch_delete'          => 'Apagar vários',
     'save'                  => 'Guardar',
     'refresh'               => 'Actualizar',
-    'order'                 => 'Ordenar',
+    'order'                 => 'Ordernar',
     'expand'                => 'Expandir',
     'collapse'              => 'Diminuir',
     'filter'                => 'Filtrar',

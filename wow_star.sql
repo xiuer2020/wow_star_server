@@ -16,30 +16,30 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`wow_star` /*!40100 DEFAULT CHARACTER SE
 
 USE `wow_star`;
 
-/*Table structure for table `addrs` */
+/*Table structure for table `addresss` */
 
-DROP TABLE IF EXISTS `addrs`;
+DROP TABLE IF EXISTS `addresss`;
 
-CREATE TABLE `addrs` (
+CREATE TABLE `addresss` (
   `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '收获地址id',
   `openid` varchar(20) NOT NULL COMMENT '用户微信openid',
   `name` varchar(20) NOT NULL COMMENT '收件人姓名',
   `phone` varchar(20) NOT NULL COMMENT '收件人电话',
-  `addr` varbinary(30) NOT NULL COMMENT '收件人地址',
-  `current_addr` tinyint(4) DEFAULT NULL COMMENT '是否为当前地址',
+  `address` varbinary(30) NOT NULL COMMENT '收件人地址',
+  `current_address` tinyint(4) DEFAULT NULL COMMENT '是否为当前地址',
   `created_at` datetime NOT NULL COMMENT '收货信息创建时间',
   `updated_at` datetime NOT NULL COMMENT '收获信息更新时间',
-  PRIMARY KEY (`id`,`addr`)
+  PRIMARY KEY (`id`,`address`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-/*Data for the table `addrs` */
+/*Data for the table `addresss` */
 
-insert  into `addrs`(`id`,`openid`,`name`,`phone`,`addr`,`current_addr`,`created_at`,`updated_at`) values
-(1,'openId','name','name','888',0,'2021-05-07 17:16:28','2021-05-07 17:49:23'),
-(2,'openId','name','name','sitedetailSite',0,'2021-05-07 17:34:55','2021-05-07 17:49:23'),
-(3,'openId','name','name','sitj',0,'2021-05-07 17:43:16','2021-05-07 17:49:23'),
-(4,'openId','name','name','sitj',0,'2021-05-07 17:48:43','2021-05-07 17:49:23'),
-(5,'openId','name','name','sitedetailSite',1,'2021-05-07 17:49:23','2021-05-07 17:49:23');
+insert  into `addresss`(`id`,`openid`,`name`,`phone`,`address`,`current_address`,`created_at`,`updated_at`) values
+(1,'openid','name','name','888',0,'2021-05-07 17:16:28','2021-05-07 17:49:23'),
+(2,'openid','name','name','sitedetailSite',0,'2021-05-07 17:34:55','2021-05-07 17:49:23'),
+(3,'openid','name','name','sitj',0,'2021-05-07 17:43:16','2021-05-07 17:49:23'),
+(4,'openid','name','name','sitj',0,'2021-05-07 17:48:43','2021-05-07 17:49:23'),
+(5,'openid','name','name','sitedetailSite',1,'2021-05-07 17:49:23','2021-05-07 17:49:23');
 
 /*Table structure for table `admin_menu` */
 
@@ -125,11 +125,11 @@ insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`
 (34,1,'admin','GET','127.0.0.1','[]','2021-05-07 05:55:11','2021-05-07 05:55:11'),
 (35,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 05:55:25','2021-05-07 05:55:25'),
 (36,1,'admin/users/create','GET','127.0.0.1','{\"_pjax\":\"#pjax-container\"}','2021-05-07 05:55:30','2021-05-07 05:55:30'),
-(37,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"openid\":null,\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 05:57:14','2021-05-07 05:57:14'),
+(37,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"address\":null,\"openid\":null,\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 05:57:14','2021-05-07 05:57:14'),
 (38,1,'admin/users/create','GET','127.0.0.1','[]','2021-05-07 05:57:14','2021-05-07 05:57:14'),
-(39,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"addr\":null,\"openid\":\"openId\",\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:57:29','2021-05-07 05:57:29'),
+(39,1,'admin/users','POST','127.0.0.1','{\"name\":null,\"address\":null,\"openid\":\"openid\",\"remember_token\":null,\"head_portrait\":null,\"phone\":null,\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:57:29','2021-05-07 05:57:29'),
 (40,1,'admin/users/create','GET','127.0.0.1','[]','2021-05-07 05:57:29','2021-05-07 05:57:29'),
-(41,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"openid\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:58:32','2021-05-07 05:58:32'),
+(41,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"address\":\"address\",\"openid\":\"openid\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\"}','2021-05-07 05:58:32','2021-05-07 05:58:32'),
 (42,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 05:58:32','2021-05-07 05:58:32'),
 (43,1,'admin/goods/create','GET','127.0.0.1','[]','2021-05-07 05:58:45','2021-05-07 05:58:45'),
 (44,1,'admin/goods','GET','127.0.0.1','{\"id\":\"2\",\"_pjax\":\"#pjax-container\"}','2021-05-07 05:59:34','2021-05-07 05:59:34'),
@@ -154,7 +154,7 @@ insert  into `admin_operation_log`(`id`,`user_id`,`path`,`method`,`ip`,`input`,`
 (63,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:34','2021-05-07 06:30:34'),
 (64,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:34','2021-05-07 06:30:34'),
 (65,1,'admin/users/create','GET','127.0.0.1','{\"_pjax\":\"#pjax-container\"}','2021-05-07 06:30:46','2021-05-07 06:30:46'),
-(66,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"addr\":\"addr\",\"openid\":\"openId\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 06:30:58','2021-05-07 06:30:58'),
+(66,1,'admin/users','POST','127.0.0.1','{\"name\":\"name\",\"address\":\"address\",\"openid\":\"openid\",\"remember_token\":\"rememberToken\",\"head_portrait\":\"\\/assets\\/images\\/item-tab.png\",\"phone\":\"11111111111\",\"_token\":\"8iwaRpU3FCXJvIrT83KobhP2RISZKs0dVvfTLgHU\",\"_previous_\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/users\"}','2021-05-07 06:30:58','2021-05-07 06:30:58'),
 (67,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 06:30:58','2021-05-07 06:30:58'),
 (68,1,'admin/users','GET','127.0.0.1','[]','2021-05-07 14:31:27','2021-05-07 14:31:27'),
 (69,1,'admin/goods','GET','127.0.0.1','[]','2021-05-07 14:32:58','2021-05-07 14:32:58'),
@@ -469,7 +469,7 @@ CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单id',
   `number` varchar(20) NOT NULL COMMENT '订单编号',
   `user_id` int(11) NOT NULL COMMENT '订单用户id',
-  `addr` varchar(20) NOT NULL COMMENT '订单用户地址',
+  `address` varchar(20) NOT NULL COMMENT '订单用户地址',
   `quantity` int(10) NOT NULL COMMENT '订单数量',
   `good_id` int(10) NOT NULL COMMENT '商品id',
   `mailing_type` varchar(20) NOT NULL COMMENT '寄件类型',
@@ -500,7 +500,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `addr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `openid` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `head_portrait` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -512,9 +512,9 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`name`,`addr`,`openid`,`remember_token`,`head_portrait`,`phone`,`created_at`,`updated_at`) values
-(1,'name','addr','openId','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 05:58:32','2021-05-07 17:49:57'),
-(2,'name','addr','openId','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 06:30:58','2021-05-07 17:49:57');
+insert  into `users`(`id`,`name`,`address`,`openid`,`remember_token`,`head_portrait`,`phone`,`created_at`,`updated_at`) values
+(1,'name','address','openid','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 05:58:32','2021-05-07 17:49:57'),
+(2,'name','address','openid','rememberToken','/assets/images/item-tab.png','11111111111','2021-05-07 06:30:58','2021-05-07 17:49:57');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

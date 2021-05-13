@@ -15,9 +15,9 @@ class Address extends Model
         'openid',
         'name',
         'region',
-        'detail_addr',
+        'detail_address',
         'phone',
-        'current_addr'
+        'current_address'
     ];
     protected $guarded = ['id'];
 

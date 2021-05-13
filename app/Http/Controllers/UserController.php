@@ -13,140 +13,67 @@ use Illuminate\Support\Facades\Crypt;
 
 class UserController extends Controller
 {
-    public function login(Request $request)
-    {
-        $code = $request->input('code');
-        if (false) {
-            $res = \Http::get('http://headhunting.dghclw.com/api/global-data');
-
-            $data = $res->body();
-
-            $data = json_decode($data);
-        }
-//    无小程序密钥, 临时逻辑
-
-        $openId = 'openId';
-        $session_key = 'session_key';
-        $unionid = 'unionid';
-        $user = User::where('openid', $openId)->first();
-        $headPortrait = 'headPortrait';
-
-        $res = Crypt::encryptString($openId);
-
-        if ($user) {
-//    用户名拦截 测试阶段不执行
-//    if (false) {
-//    if(true){
-            return success_json($res, '登录成功');
-        } else {
-            User::create([
-                'openid' => $openId,
-                'session_key' => $session_key,
-                'uionid' => $unionid,
-                'head_portrait' => $headPortrait,
-            ]);
-            return success_json($res, '登录成功');
-        }
-    }
-
     public function getGoodList(Request $request)
     {
         $goodList = Good::all();
         return success_json($goodList);
     }
 
-    public function comfirmOrde(Request $request)
-    {
-        $openId = $request->openId;
-        $goodId = $request->input('goodId');
-        $goodQuantity = $request->input('goodQuantity');
-        $addr = $request->input('addr');
-        $mailingType = $request->input('mailingType');
-        $number = 'ws' . time();
-//    临时字段
-
-//    销量增加
-        $goodSaleQuantity = Good::where('id', $goodId)->first()->sale_quantity;
-        $goodSaleQuantityUpdated = Good::where('id', $goodId)->update([
-            'sale_quantity' => $goodSaleQuantity + $goodQuantity
-        ]);;
-        if ($goodSaleQuantityUpdated === 0) {
-            return error_json('订单提交失败');
-        }
-
-        $orderUpdated = Order::create([
-            'openid' => $openId,
-            'number' => $number,
-            'addr' => $addr,
-            'quantity' => $goodQuantity,
-            'mailing_type' => $mailingType,
-            'good_id' => $goodId
-        ]);
-        if ($orderUpdated) {
-            return success_json('订单提交成功');
-        } else {
-            return error_json('订单提交失败');
-        }
-
-
-    }
 
     /**提交反馈
      * POST
-     * @param string $openId 用户
+     * @param string $openid 用户
      */
     public function setFeedback(Request $request)
     {
-        $openId = $request->openId;
-        $number = 'f' . time();
-        $description = $request->input('description');
-        $feedbackUpdated = Feedback::create([
-            'number' => $number,
-            'openid' => $openId,
-            'description' => $description
-        ]);
-        if ($feedbackUpdated) {
-            return success_json('提交反馈成功');
-        } else {
-            return error_json('提交反馈失败');
-        }
+        $rules = [
+            'description' => 'required'
+        ];
+        $this->validate($request, $rules);
+
+        $user = \Auth::user();
+        $data = $request->only(['description']);
+        $data['number'] = 'f' . time();
+        $data['openid'] = $user->openid;
+        $feedbackUpdated = Feedback::create($data);
+        return success_json(compact('user', 'feedbackUpdated'));
     }
 
-    public function getMyOrdes(Request $request)
+    public function getMyOrders(Request $request)
     {
-        $openId = $request->openId;
-        $myOrdes = \App\Models\Order::where('openid', $openId)->get();
-        return success_json($myOrdes);
+        $openid = $request->openid;
+        $myOrders = Order::where('openid', $openid)->get();
+        return success_json($myOrders);
     }
 
-    public function setAddr(Request $request)
+    public function setAddress(Request $request)
     {
 
-        $openId = $request->openId;
+        $openid = $request->openid;
         $name = $request->input('name');
         $region = $request->input('region');
-        $detailAddr = $request->input('detailAddr');
+        $detailAddress = $request->input('detailAddress');
         $phone = $request->input('phone');
-        $currentAddr = $request->input('currentAddr');
+        $currentAddress = $request->input('currentAddress');
 
 
-        if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Address::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
-                'current_addr' => 0
+        if ($currentAddress == 1 && $name && $region && $detailAddress && $phone) {
+            Address::where([['openid', $openid], ['current_address', $currentAddress]])->update([
+                'current_address' => 0
             ]);
         }
 
 
-        if ($name && $region && $detailAddr && $phone && $currentAddr != null) {
-            $addrUpdated = Address::create([
-                'openid' => $openId,
+        if ($name && $region && $detailAddress && $phone && $currentAddress != null) {
+            $addressUpdated = Address::create([
+                'openid' => $openid,
                 'name' => $name,
                 'region' => $region,
-                'detail_addr' => $detailAddr,
+                'detail_address' => $detailAddress,
                 'phone' => $phone,
-                'current_addr' => $currentAddr
+                'current_address' => $currentAddress
             ]);
-            if ($addrUpdated) {
+            if ($addressUpdated) {
                 return success_json('添加地址成功');
             } else {
                 return error_json('添加地址失败');
@@ -156,46 +83,33 @@ class UserController extends Controller
         }
     }
 
-    public function getAddr(Request $request)
+    public function getAddress(Request $request)
     {
-        $openId = $request->openId;
-        $addrs = Address::where('openid', 'openId')->get();
-        if ($addrs) {
-            return success_json($addrs);
+        $user = \Auth::user();
+        $openid = $user->openid;
+        $addresss = Address::where('openid', $openid)->get();
+        if ($addresss) {
+            return success_json($addresss);
         } else {
             return error_json('获取地址失败');
         }
     }
 
-    public function updateAddr(Request $request)
+    public function updateAddress(Request $request)
     {
-        $openId = $request->openId;
-        $name = $request->input('name');
-        $region = $request->input('region');
-        $detailAddr = $request->input('detailAddr');
-        $phone = $request->input('phone');
-        $currentAddr = $request->input('currentAddr');
-        $addrId = $request->input('addrId');
+        $data = $request->only(['name', 'region', 'detail_address', 'phone', 'current_address', 'address_id']);
+        $user = \Auth::user();
 
-        if ($currentAddr == 1 && $name && $region && $detailAddr && $phone) {
-            Address::where([['openid', $openId], ['current_addr', $currentAddr]])->update([
-                'current_addr' => 0
+        $data['openid'] = $user->openid;
+
+        if ($data['current_address'] == 1) {
+            Address::where([['openid', $user->openid], ['current_address', $data['current_address']]])->update([
+                'current_address' => 0
             ]);
         }
 
-        $addr = Address::where([['openid', 'openId'], ['id', $addrId]])->first()->update([
-            'user_id' => $openId,
-            'name' => $name,
-            'region' => $region,
-            'detail_addr' => $detailAddr,
-            'phone' => $phone,
-            'current_addr' => $currentAddr,
-        ]);
-        if ($addr) {
-            return success_json('更新地址成功');
-        } else {
-            return error_json('获取地址失败');
-        }
+        $address = Address::where([['openid', $user->openid], ['id', $data['address_id']]])->first()->update($data);
+        return success_json(compact('user'));
     }
 
     public function getRankingList(Request $request)
@@ -207,7 +121,7 @@ class UserController extends Controller
 
     public function test(Request $request)
     {
-        $res = Order::where('openid', 'openId')->join('users');
+        $res = Order::where('openid', 'openid')->join('users');
 
         return success_json($res);
     }
