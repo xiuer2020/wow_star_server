@@ -15,3 +15,12 @@ function error_json($msg = 'error', $code = 200)
 
     return response()->json($rs, 200);
 }
+
+function object_to_array ($obj){
+    $arr = array();
+
+    foreach ($obj as $key=>$value){
+        $arr[$key] = $value;
+    }
+    return $arr;
+}

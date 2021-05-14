@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,24 +20,17 @@ use App\Http\Controllers\OrderController;
 
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('getOpenid', [AuthController::class, 'getOpenid']);
-Route::get('getGoodList', [UserController::class, 'getGoodList']);
-//Route::post('getAddress', [UserController::class, 'getAddress']);
-Route::get('test', [UserController::class, 'test']);
+Route::get('getGoodList', [AppController::class, 'getGoodList']);
+Route::post('getRankingList', [AppController::class, 'getRankingList']);
+Route::get('test', [TestController::class, 'index']);
 
 Route::group(['middleware'=>'auth:sanctum'], function(){
-    Route::post('getAddress', [UserController::class, 'getAddress'])->name('getAddress');
-
-    Route::post('comfirmOrder', [OrderController::class, 'comfirmOrder']);
-
+    Route::post('comfirmOrder', [OrderController::class, 'add']);
+    Route::post('getMyOrders', [OrderController::class, 'index']);
 
     Route::post('setFeedback', [UserController::class, 'setFeedback']);
-    Route::post('getMyOrders', [UserController::class, 'getMyOrders']);
+    Route::post('getAddress', [UserController::class, 'getAddress']);
     Route::post('setAddress', [UserController::class, 'setAddress']);
-
     Route::post('updateAddress', [UserController::class, 'updateAddress']);
-    Route::post('getRankingList', [UserController::class, 'getRankingList']);
-
-
-    Route::get('index', [UserController::class, 'index']);
 });
 
