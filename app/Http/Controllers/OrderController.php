@@ -18,7 +18,7 @@ class OrderController extends Controller
         return success_json(compact('orders'));
     }
 
-    public function add()
+    public function add(Request $request)
     {
         $rules = [
             'good_id' => 'required',

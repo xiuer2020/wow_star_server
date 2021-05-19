@@ -3,7 +3,6 @@
 
 namespace App\Models;
 
-
 use Encore\Admin\Traits\DefaultDatetimeFormat;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +11,6 @@ class Order extends Model
     use DefaultDatetimeFormat;
 
     protected $guarded = ['id'];
-    public $timestamps = true;
 
     public function user()
     {
@@ -23,4 +21,5 @@ class Order extends Model
     {
         return $this->belongsTo(Good::class)->withDefault();
     }
+
 }

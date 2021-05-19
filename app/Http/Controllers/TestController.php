@@ -2,12 +2,19 @@
 
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppController;
+use App\Models\Temp;
+use App\Models\Test;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+use Illuminate\Support\Facades\Cookie;
 
 class TestController extends Controller
 {
-    public function index(){
-        return success_json(Route::get('/get'), [AppController::class, 'test']);
+    public function index(Request $request){
+        $res = Test::where('id', 1)->get();
+
+        return success_json($res);
     }
 }

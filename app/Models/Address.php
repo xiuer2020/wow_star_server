@@ -2,23 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 
 class Address extends Model
 {
-    use HasFactory;
+    use DefaultDatetimeFormat;
     protected $table = 'addresses';
-
-    protected $fillable = [
-        'openid',
-        'name',
-        'region',
-        'detail_address',
-        'phone',
-        'current_address'
-    ];
     protected $guarded = ['id'];
-
 }

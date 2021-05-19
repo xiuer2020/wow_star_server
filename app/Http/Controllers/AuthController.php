@@ -35,7 +35,6 @@ class AuthController extends Controller
 
         WxSession::where('openid', $openid)->delete();
         WxSession::create(compact('openid', 'session_key'));
-        return success_json(compact('openid'));
 
         return success_json(compact('openid', 'session_key'));
     }
@@ -84,7 +83,9 @@ class AuthController extends Controller
         } else {
             $user = User::create(compact('openid', 'session_key'));
         }
-        $user->tokens()->delete();
+//        $user->tokens()->delete();
+        $user->tokens()-where('id', $user->id)->delete();
+
         $token = $user->createToken('web')->plainTextToken;
 
         return success_json(['token' => $token, 'user' => $user]);

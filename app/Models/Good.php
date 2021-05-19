@@ -3,27 +3,18 @@
 namespace App\Models;
 
 use Encore\Admin\Traits\DefaultDatetimeFormat;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
+//use Illuminate\Notifications\Notifiable;
 
 class Good extends Model
 {
-    use HasFactory, Notifiable, DefaultDatetimeFormat;
-
-
+    use DefaultDatetimeFormat;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'number',
-        'description',
-        'publicity_video'
-    ];
     protected $guarded = ['id'];
 
 }
